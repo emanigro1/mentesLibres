@@ -258,7 +258,7 @@ app.get("/libros", function (req, res) {
 
             } else {
                
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks })
+                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
             }
         })
     } else {
