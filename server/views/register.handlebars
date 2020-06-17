@@ -1,0 +1,64 @@
+<div class="container-fluid fondo-formulario ">
+	<div class="row p-2">
+		<div class="col-12 col-md-5 bg-light m-auto formularios">
+			<h3 class="m-0 pt-2 text-center">Registro</h3>
+			<form action="/register" method="POST">
+				<div class="form-group m-0">
+					<label for="username"></label>
+					<input id="username" name="username" placeholder="Nombre de usuario" type="text" required
+						class="form-control">
+				</div>
+
+				<p class="text-danger pl-1 m-auto">{{userAlreadyExists}}</p>
+
+				<div class="form-group m-0">
+					<label for="password"></label>
+					<input id="password" name="password" placeholder="Contraseña" minlength="6" type="password" required
+						class="form-control">
+				</div>
+				<div class="form-group m-0">
+					<label for="repeatPassword"></label>
+					<input id="repeatPassword" name="repeatPassword" placeholder="Repita Cotraseña" minlength="6"
+						type="password" required class="form-control">
+				</div>
+
+				<p class="text-danger pl-1 m-auto">{{repeatPasswordError}}</p>
+
+				<div class="form-group m-0">
+					<label for="email"></label>
+					<input id="email" name="email" placeholder="E-Mail" type="email" class="form-control" required>
+				</div>
+
+				<p class="text-danger pl-1 m-auto">{{emailAlreadyExists}}</p>
+
+
+				<div class="form-group m-0">
+					<label for="provincia"></label>
+					<input id="provincia " name="provincia" placeholder="Provincia" type="text" required
+						class="form-control">
+				</div>
+				<div class="form-group m-0">
+					<label for="localidad"></label>
+					<input id="localidad  " name="localidad" placeholder="Localidad" type="text" required
+						class="form-control">
+				</div>
+
+
+				<div class="form-group mt-4 text-center">
+					<button type="submit" class="btn btn-secondary btn-lg btn-block">Registrarse</button>
+
+				</div>
+				<div class="form-check  p-0 text-center">
+					<input type="checkbox" class="form-check-input" id="aceptar-terminos" required>
+					<label class="form-check-label" for="aceptar-terminos">Estoy de acuerdo con términos y
+						condiciones</label>
+
+				</div>
+				<div class="container text-center ">
+					<p>¿Ya tenés una cuenta? <a href="login">Iniciar Sesión</a></p>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

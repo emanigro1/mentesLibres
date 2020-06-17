@@ -1,0 +1,30 @@
+<div class="container-fluid p-0" style="background-color: aliceblue;">
+        <h1 class="text-center"style="font-family: -apple-system-">Mis libros subidos</h1>
+
+
+            <div class="d-flex align-content-start flex-wrap  justify-content-around">
+
+        {{#each books}}
+
+        <div class="card border-secondary cardall m-2 p-2 contenedorCards" >
+            <img class="card-img-top card-img-topA" src="images/books/{{this.img}}" alt="Card image cap">
+            <div class="textoCartas card-body p-2 text-center">
+                <h2>Titulo</h2>
+                <p>{{this.titulo}}</p>
+                <h2>Autor</h2>
+                <p>{{this.id}}</p>
+                {{!--      <h3>Editorial: </h3>
+                <p>{{this.editorial}}</p>
+                <h2>ISBN: </h2>
+                <p>{{this.isbn}}</p>
+                <h2>Tematica: </h2>
+                <p>{{this.tematica}}</p> --}}
+                <a class="btn btn-danger" href="/editar/{{this.id}}" role="button">Editar</a>
+                <a class="btn btn-danger" href="/eliminar/{{this.id}}" role="button">Eliminar</a>
+                <a class="btn btn-success mt-1" href="/detalles/{{this.id}}" role="button">Ver mas</a>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

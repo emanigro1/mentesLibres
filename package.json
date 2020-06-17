@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Intercambio de libros",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "author": "Emanuel Angel Nigro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4z",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.5.8",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.4"
+  }
+}

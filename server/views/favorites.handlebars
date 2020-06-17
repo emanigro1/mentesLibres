@@ -1,0 +1,25 @@
+<div class="container-fluid p-0" style="background-color: aliceblue;">
+    <div class="d-flex align-content-around flex-wrap">
+
+        {{#each books}}
+
+        <div class="card border-secondary cardall  m-2 p-2" style="width: 200px; height: 100%;">
+            <img class="card-img-top card-img-topA" src="images/books/{{this.img}}" alt="Card image cap">
+            <div class="card-body p-2 text-center">
+                <h3>Titulo:</h3>
+                <p>{{this.titulo}}</p>
+                <h3>Autor: </h3>
+                <p>{{this.autor}}</p>
+                {{!--      <h3>Editorial: </h3>
+                <p>{{this.editorial}}</p>
+                <h3>ISBN: </h3>
+                <p>{{this.isbn}}</p>
+                <h3>Tematica: </h3>
+                <p>{{this.tematica}}</p> --}}
+                <a class="btn btn-secondary" href="#" role="button">Editar</a>
+                <a class="btn btn-secondary" href="#" role="button">Eliminar</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

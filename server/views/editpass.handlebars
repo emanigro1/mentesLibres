@@ -1,0 +1,33 @@
+<div class="container-fluid fondo-formulario ">
+
+	<div class="row ">
+		<div class="col-12 col-md-5 bg-light m-auto formularios ">
+			<h3 class="m-0 pt-2 text-center">Cambiar contraseña</h3>
+
+
+			<form action="/editpass" method="POST">
+				<div class="form-group m-0">
+
+					<label for="password"></label>
+					<input id="password" name="password" placeholder="Nueva contraseña" minlength="6" type="password"
+						required class="form-control">
+				</div>
+				<p class="text-danger pl-1 m-auto">{{repeatPasswordError}}</p>
+
+				<div class="form-group m-0">
+					<label for="passwordRepeat"></label>
+					<input id="passwordRepeat" name="passwordRepeat" placeholder="Repita nueva contraseña" minlength="6"
+						type="password" required class="form-control">
+				</div>
+
+
+				<div class="form-group mt-4 text-center">
+					<button type="submit" class="btn btn-secondary btn-lg btn-block">Guardar cambios</button>
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</div>

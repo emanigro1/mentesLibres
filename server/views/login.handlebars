@@ -1,0 +1,41 @@
+<div class="container-fluid fondo-formulario ">
+
+	<div class="row ">
+		<div class="col-12 col-md-5 bg-light m-auto formularios ">
+			<h3 class="m-0 pt-2 text-center">Iniciar Sesión</h3>
+
+			<p class="text-success text-center m-auto ">{{successfulRegistration}}</p>
+			<p class="text-success text-center m-auto ">{{logout}}</p>
+
+			<form action="/login" method="POST">
+				<div class="form-group m-0">
+
+					<label for="username"></label>
+					<input id="username" name="username" placeholder="Nombre de usuario" type="text" required
+						class="form-control">
+				</div>
+			
+				<p class="text-danger pl-1 m-auto">{{inexistentUser}}</p>
+				
+				<div class="form-group m-0">
+					<label for="password"></label>
+					<input id="password" name="password" placeholder="Contraseña" minlength="6" type="password" required
+						class="form-control">
+				</div>
+
+				<p class="text-danger pl-1 m-auto">{{errorPass}}</p>
+
+				<div class="form-group mt-4 text-center">
+					<button type="submit" class="btn btn-secondary btn-lg btn-block">Iniciar</button>
+				</div>
+
+				<div class="container text-center ">
+					<p>¿No tenés una cuenta? <a href="register">Registrate</a></p>
+				</div>
+
+
+
+			</form>
+		</div>
+	</div>
+</div>

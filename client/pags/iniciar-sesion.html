@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Iniciar sesión - MentesLibres®</title>
+
+	<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="icon" href="../images/icono.gif" type="image/gif" sizes="16x16"> 
+
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
+<body> 
+
+	<header >
+		<nav class="navbar navbar-light navbar-expand-lg " style="background-color: #D2E1EB;">
+			<div class="container-fluid">
+				<a class="navbar-brand " href="../index.html">
+					<img src="../images/icono-header2.png"  height="60" alt="logo">	
+				</a>
+
+				<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<form class="form-inline m-auto">
+						<button class="boton-busqueda btn btn-outline-success my-2 my-sm-0" type="submit" >
+							<img src="../images/icono-buscar.png"  height="20" >
+						</button>
+						<input class="form-control mr-sm-2 "size="45" id="barra-buscar" type="search" placeholder="Autor, título o ISBN" aria-label="Search">
+					</form>
+					<ul class="navbar-nav  ">		
+
+						<li class="nav-item m-auto">
+							<a class="nav-link " href="../pags/registrado.html"><img src="../images/icono-upload.png"  height="20" class="mr-1">Publicar</a>
+						</li>
+						<li class="nav-item m-auto">
+							<a class="nav-link pr-0" href="contacto.html"><img src="../images/icono-contacto.png"  height="20" class="mr-1">Contacto</a>
+						</li> 
+						<!-- <li class="nav-item m-auto">
+							<a class="nav-link" href="#"><img src="images/icono-favorito.png"  height="20" class="mr-1">Favoritos</a>
+						</li> -->
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle text-center" href="#" id="navbarDropdown-ingresar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><h6><img src="../images/icon-iniciar.png" height="20" class="mr-1">Mi cuenta</h6><span class="pl-3">Inicie o Registrese</span></a>
+							<div class="dropdown-menu text-center" aria-labelledby="navbarDropdown-ingresar">
+								<a class="dropdown-item" href="iniciar-sesion.html">Iniciar sesión</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="registro.html">Registrarse</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</nav>	
+	</header>	
+	<div class="container-fluid fondo-formulario ">
+		
+		<div class="row ">
+			<div class="col-12 col-md-5 bg-light m-auto formularios ">		
+				<h3 class="m-0 pt-2 text-center">Iniciar Sesión</h3>		
+				<form >
+					<div class="form-group m-0">
+						<label for="nombre"></label> 
+						<input id="nombre" name="nombre" placeholder="Nombre de usuario" type="text" required class="form-control">
+					</div>
+					<div class="form-group m-0">
+						<label for="contraseña"></label> 
+						<input id="contraseña" name="contraseña" placeholder="Contraseña" minlength="6" type="password" required class="form-control">
+					</div>	
+					
+					<div class="form-group m-4 text-center">
+						<button name="submit" type="submit" class="btn btn-secondary btn-lg btn-block">Iniciar</button>
+					</div>
+
+
+					<div class="form-check m-0 text-center">
+						<input type="checkbox" class="form-check-input" id="conectar-automaticamente">
+						<label class="form-check-label" for="conectar-automaticamente">Conectar automáticamente</label>
+					</div>
+
+					<div class="container text-center ">
+						<p >¿No tenés una cuenta
+							? <a href="registro.html">Registrate</a></p>
+					</div>
+
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer class="container bg-light">
+		<p class="text-center pt-2">© 2020 — Mentes Libres. Todos los derechos reservados.</p>
+
+	</footer >
+
+
+
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/popper/popper.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

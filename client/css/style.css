@@ -1,0 +1,188 @@
+
+body{
+	font-family: 'Titillium Web',
+	sans-serif;
+
+}
+
+
+ul li a span{
+	font-size: 12px;
+	margin-bottom: 0;
+}
+
+ul li a h6{
+	font-size: 15px;
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+.titulo-portada{	
+	padding: 0 20px 20px 20px;
+}
+
+.texto-banner{
+	font-weight: bold;
+	margin: 0;
+	color: whitesmoke;
+	text-shadow: 2px 2px black;
+	text-align: center;
+}
+
+.banner-portada{
+	background-image: url(../images/fondo-pantalla2.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.titulo-portada p{
+	font-size: 23px;
+}
+
+.boton-busqueda {
+	border: 0 solid transparent;
+}
+
+.article{
+	border: none;
+}
+
+.resumen{
+	padding: 15px;
+}
+
+.redes { 
+	padding: 0;
+	list-style:none; 
+
+}
+
+
+.redes li a {   
+	color: black;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+.redes li a img{
+	display: block;
+	margin:auto;
+}
+
+
+.redes li {
+	font-size: 0;
+	padding-bottom: 30px;
+}
+
+.pagination li a{
+	border: none;
+}
+
+.boton-favorito:hover{
+	background-color: red;
+	color:white;
+
+}
+.fondo-formulario{		
+	background-image: url(../images/fondo-pantalla2.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+
+
+}
+.fondo-formulario .row{
+min-height:  480px;
+
+}
+
+.formularios{
+	border-radius: 1em;
+	box-shadow: 0 0 1em 0px  #2a3b38;
+
+}
+.fondo-contacto{
+	border-radius: 1em;
+	box-shadow: 0 0 1em 0px  #2a3b38;
+	background-color: rgba(0,0,0,0.2);
+
+}
+.fondo-contacto h3 {
+	font-weight: bold;
+	margin: 0;
+	color: whitesmoke;
+	text-shadow: 2px 2px black;
+	text-align: center;
+
+}
+
+.contenedor-categoria{
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.categoria{
+	background-color: red;
+	width: 350px;
+	height: 450px;
+	border-color: black;
+	border-style: solid;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.categoria2{
+	background-color: blue;
+	width: 350px;
+	height: 450px;
+	border-color: black;
+	border-style: solid;
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+}
+
+
+.tarjetas-myBooks h3{
+	font-size: medium;
+	display: inline;
+
+}
+
+.tarjetas-myBooks {
+	margin: 10px;
+	display: inline;
+}
+
+.card-img-topA{
+	
+	height: 50%;
+
+}
+.cardas{
+border-radius: 1em;
+box-shadow: 0 0 1em 0px  #2a3b38;}
+
+.dropdown-menu a{
+	color: seashell;
+}
+.contenedorCards {
+	width: 200px;
+	height: 100%;
+}
+.textoCartas > h2 {
+	font-size: 20px;
+	display: block;
+
+}
+.textoCartas > p {
+	font-size: 15px;
+	display: block;
+}
