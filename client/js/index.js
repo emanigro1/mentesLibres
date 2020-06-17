@@ -1,6 +1,8 @@
-const boton = document.getElementById("botonBusqueda");
+/* const botonForm = document.getElementById("botonForm");
 
-boton.addEventListener("click", function () {
+
+botonForm.addEventListener("submit", function (event) {
+    event.preventDefault();
 
     const contenedor = document.getElementById("contenedorEjemplo");
     const busqueda = document.getElementById("barraBuscar").value;
@@ -28,7 +30,7 @@ boton.addEventListener("click", function () {
     xhr.send();
 })
 
-/* reedirigir pagina
+reedirigir pagina
 
 setTimeout(() => {
     window.location.href = "/contact";

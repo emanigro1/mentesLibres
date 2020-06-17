@@ -27,7 +27,7 @@ app.use(expSession({
     saveUninitialized: false
 }));
 
-asd
+
 
 app.engine("handlebars", exphbs({
     defaultLayout: "main",
@@ -55,7 +55,7 @@ const upload = multer({ storage: uploadStorage });
 //pagina de contacto
 app.get("/contact", (req, res) => {
     if (req.session.loggerUser) {
-        res.status(200).render("contact", { layout: "loggedIn" ,name:req.session.loggerUser })
+        res.status(200).render("contact", { layout: "loggedIn", name: req.session.loggerUser })
 
     } else {
         res.render("contact");
@@ -70,7 +70,7 @@ app.get("/", (req, res) => {
         editionBooks.getBooksAll((booksList) => {
 
 
-            res.status(200).render("home", { layout: "loggedIn", books: booksList ,name:req.session.loggerUser });
+            res.status(200).render("home", { layout: "loggedIn", books: booksList, name: req.session.loggerUser });
         })
     } else {
 
@@ -152,7 +152,7 @@ app.get("/logout", (req, res) => {
 //endoint de subida de libros
 app.get("/upload", (req, res) => {
     if (req.session.loggerUser) {
-        res.status(200).render("upload", { layout: "loggedIn",name:req.session.loggerUser })
+        res.status(200).render("upload", { layout: "loggedIn", name: req.session.loggerUser })
         return;
     } else {
 
@@ -161,9 +161,13 @@ app.get("/upload", (req, res) => {
 })
 app.post("/upload", upload.single('imgBook'), (req, res) => {
     if (req.session.loggerUser) {
+
+
         editionBooks.uploadBooks(req.session.loggerUser, req.body.titulo, req.body.autor,
             req.body.editorial, req.body.isbn, req.body.tematica, req.file.filename,
             (resultado) => {
+
+
                 res.redirect("/mybooks")
             })
     }
@@ -176,7 +180,7 @@ app.get("/mybooks", (req, res) => {
     if (req.session.loggerUser) {
         editionBooks.getBooksByUser(req.session.loggerUser, (books) => {
 
-            res.status(200).render("mybooks", { layout: "loggedIn", books,name:req.session.loggerUser })
+            res.status(200).render("mybooks", { layout: "loggedIn", books, name: req.session.loggerUser })
             return;
         })
     } else {
@@ -196,7 +200,7 @@ app.listen(port, () => {
 
 app.get("/addfav/:id", (req, res) => {
     editionBooks.getBookByID(req.params.id, books => {
-        
+
 
 
     })
@@ -236,26 +240,27 @@ app.get("/detalle/:id", (req, res) => {
 
 
 
-
-/* app.get("/libros", function (req, res) {
+app.get("/libros", function (req, res) {
     if (req.session.loggerUser) {
         editionBooks.getBooksAll(listaLibros => {
 
             if (req.query.all) {
 
-                res.json(listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
+                listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
                     item.titulo.toUpperCase().includes(req.query.all.toUpperCase()) || item.editorial.toUpperCase().includes(req.query.all.toUpperCase())
                     || item.isbn.toUpperCase().includes(req.query.all.toUpperCase()) || item.tematica.toUpperCase().includes(req.query.all.toUpperCase())
-                ));
+                );
+                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
+
             } else {
-                res.json(listaLibros);
+                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
             }
         })
     } else {
         res.status(200).render("login");
     }
 });
- */
+
 
 /* if (req.session.loggerUser) {
        editionBooks.getBooksAll(booksList => {
