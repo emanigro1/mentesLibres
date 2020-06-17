@@ -173,7 +173,7 @@ function getBookByID(filterId, resultadoCallback) {
                         tematica: book.tematica,
                         img: book.img
                     }
-                    console.log(bookResult);
+               
 
                     resultadoCallback(bookResult);
                 }

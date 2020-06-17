@@ -1,67 +1,64 @@
 <div class="container">
     <div class="row">
-        <div class="col">
-            <h3 class="text-center">Detalle libro{{book.id}}</h3>
-            <div class="container-fluid p-0" style="background-color: aliceblue;">
-
-                <div class="d-flex align-content-around flex-wrap"></div>
 
 
-
-                <div class="card border-secondary cardall m-2 p-2" style="width: 200px; height: 100%;">
-                    <img class="card-img-top card-img-topA" src="images/books/{{book.img}}" alt="Card image cap">
-                    <div class="card-body p-2 text-center">
-                        <h3>Titulo:</h3>
-                        <p>{{book.titulo}}</p>
-                        <h3>Autor: </h3>
-                        <p>{{book.autor}}</p>
-                        <h3>Editorial: </h3>
-                        <p>{{book.editorial}}</p>
-                        <h3>ISBN: </h3>
-                        <p>{{book.isbn}}</p>
-                        <h3>Tematica: </h3>
-                        <p>{{book.tematica}}</p>
+            <div class="col-12 col-sm-6 ">
+                <h3 class="text-center">Detalle de dueño</h3>
+                <div class="container-fluid p-0" style="background-color: aliceblue;">
 
 
+
+
+                    <div class="card border-secondary cardall m-2 p-2" style="width: 200px; height: 100%;">
+                        <div class="card-body p-2 text-center">
+                            <h3>Usuario:</h3>
+                            <p>{{user.username}}</p>
+                            <h3>E-mail: </h3>
+                            <p>{{user.email}}</p>
+                            <h3>Provincia: </h3>
+                            <p>{{user.provincia}}</p>
+                            <h3>Localidad: </h3>
+                            <p>{{user.localidad}}</p>
+
+
+
+                        </div>
                     </div>
+
                 </div>
+                <a class="btn btn-success mt-1" href="/addfav/{{book.id}}" role="button">AddFav</a>
+                <a class="btn btn-success mt-1" href="/" role="button">Volver</a>
 
             </div>
-            <a class="btn btn-success mt-1" href="/" role="button">Volver</a>
-
-        </div>
-    </div>
-    <div class="col">
-        <div class="col">
-            <h3 class="text-center">Detalle libro</h3>
-            <div class="container-fluid p-0" style="background-color: aliceblue;">
-
-                <div class="d-flex align-content-around flex-wrap"></div>
+            <div class="col-12 col-sm-6 ">
+                <h3 class="text-center">Detalle del libro</h3>
+                <div class="container-fluid p-0" style="background-color: aliceblue;">
 
 
+                    <div class="card border-secondary cardall cardas  m-2 p-2 contenedorCards">
+                        <img class="card-img-top card-img-topA" src="images/books/{{this.img}}" alt="Card image cap">
+                        <div class="textoCartas card-body p-2 text-center">
+                            <h2 class="">Titulo</h2>
+                            <p>{{book.titulo}}</p>
+                            <h2 class="">Autor</h2>
+                            <p>{{book.autor}}</p>
+                            <h2>Editorial: </h2>
+                            <p>{{books.editorial}}</p>
+                            <h2>ISBN: </h2>
+                            <p>{{book.isbn}}</p>
+                            <h2>Tematica: </h2>
+                            <p>{{book.tematica}}</p>
 
-                <div class="card border-secondary cardall m-2 p-2" style="width: 200px; height: 100%;">
-                    <div class="card-body p-2 text-center">
-                        <h3>Usuario:</h3>
-                        <p>{{user.username}}</p>
-                        <h3>E-mail: </h3>
-                        <p>{{user.email}}</p>
-                        <h3>Provincia: </h3>
-                        <p>{{user.provincia}}</p>
-                        <h3>Localidad: </h3>
-                        <p>{{user.localidad}}</p>
-
-
-
+                        </div>
                     </div>
+
+
+
                 </div>
-
             </div>
-            <a class="btn btn-success mt-1" href="/addfav/{{book.id}}" role="button">AddFav</a>
-            <a class="btn btn-success mt-1" href="/" role="button">Volver</a>
-
         </div>
 
+
+
     </div>
-</div>
 </div>

@@ -180,6 +180,7 @@ app.get("/mybooks", (req, res) => {
     if (req.session.loggerUser) {
         editionBooks.getBooksByUser(req.session.loggerUser, (books) => {
 
+
             res.status(200).render("mybooks", { layout: "loggedIn", books, name: req.session.loggerUser })
             return;
         })
@@ -242,18 +243,22 @@ app.get("/detalle/:id", (req, res) => {
 
 app.get("/libros", function (req, res) {
     if (req.session.loggerUser) {
+        console.log(req.query);
         editionBooks.getBooksAll(listaLibros => {
 
             if (req.query.all) {
 
-                listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
+            let  listBooks =  listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
                     item.titulo.toUpperCase().includes(req.query.all.toUpperCase()) || item.editorial.toUpperCase().includes(req.query.all.toUpperCase())
                     || item.isbn.toUpperCase().includes(req.query.all.toUpperCase()) || item.tematica.toUpperCase().includes(req.query.all.toUpperCase())
                 );
-                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
+                               
+                
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks })
 
             } else {
-                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
+               
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks })
             }
         })
     } else {
