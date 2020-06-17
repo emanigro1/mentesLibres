@@ -27,7 +27,7 @@ app.use(expSession({
     saveUninitialized: false
 }));
 
-
+asd
 
 app.engine("handlebars", exphbs({
     defaultLayout: "main",
