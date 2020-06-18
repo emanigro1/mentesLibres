@@ -4,20 +4,20 @@
         <form class="form-inline" action="/libros" method="GET">
             <input id="barraBuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
                 name="all">
-            <button class="btn btn-outline-success mx-0 my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success mx-0 my-2 my-sm-0" type="submit">Buscar</button>
         </form>
     </nav>
     <div class="row">
         <div class="col col-sm-3 ">
             <nav class="nav flex-column">
-                <a class="nav-link " href="#">Arte</a>
-                <a class="nav-link" href="#">Ciencias naturales</a>
-                <a class="nav-link" href="#">Computacion</a>
-                <a class="nav-link " href="#">Enciclopedias</a>
-                <a class="nav-link " href="#">Ficcion y literatura</a>
-                <a class="nav-link" href="#">Gastronomia</a>
-                <a class="nav-link" href="#">Infantil</a>
-                <a class="nav-link " href="/libros?all=">Negocios</a>
+                <a class="nav-link " href="/libros?arte=arte">Arte</a>
+                <a class="nav-link" href="/libros?cienciasnaturales=cienciasnaturales">Ciencias naturales</a>
+                <a class="nav-link" href="/libros?computacion=computacion">Computacion</a>
+                <a class="nav-link " href="/libros?enciclopedias=enciclopedias">Enciclopedias</a>
+                <a class="nav-link " href="/libros?ficcion=ficcion">Ficcion y literatura</a>
+                <a class="nav-link" href="/libros?gastronomia=gastronomia">Gastronomia</a>
+                <a class="nav-link" href="/libros?infantil=infantil">Infantil</a>
+                <a class="nav-link " href="/libros?negocio=negocio">Negocios</a>
             </nav>
         </div>
         <div class="col-12 col-sm-9 ">
@@ -25,26 +25,18 @@
 
                 {{#each books}}
 
-                <div class="card border-secondary cardall cardas  m-2 p-2 contenedorCards">
-                    <img class="card-img-top card-img-topA rounded" src="images/books/{{this.img}}" alt="Card image cap">
+                <div class="card border-secondary cardall cardas bg-light  m-2 p-2 contenedorCards">
+                    <img class="card-img-top card-img-topA rounded" src="images/books/{{this.img}}"
+                        alt="Card image cap">
                     <div class="textoCartas card-body p-2 text-center">
                         <h2 class="">Titulo</h2>
                         <p>{{this.titulo}}</p>
                         <h2 class="">Autor</h2>
                         <p>{{this.autor}}</p>
-                        {{!--  <h3>Editorial: </h2>
-                        <p>{{this.editorial}}</p>
-                        <h2>ISBN: </h2>
-                        <p>{{this.isbn}}</p>
-                        <h2>Tematica: </h2>
-                        <p>{{this.tematica}}</p> --}}
 
-                        <a class="btn btn-outline-success" href="/detalle/{{id}}">Saber mas</a>
-
+                        <a class="btn btn-info mt-1" href="/detalle/{{id}}" role="button">Info</a>
                     </div>
                 </div>
-
-
                 {{/each}}
             </div>
         </div>

@@ -1,13 +1,13 @@
    <div class="container-fluid" style="background-color: #f0f8ff;">
 
-    <h1 class="text-center" style="font-family: -apple-system-">Mis libros</h1>
+    <h1 class="text-center" style="font-family: -apple-system-">Libros de {{duenio}}</h1>
 
 <div class="d-flex align-content-start flex-wrap  justify-content-around">
 
     {{#each books}}
 
     <div class="card border-secondary cardall cardas  bg-light  m-2 p-2 contenedorCards">
-        <img class="card-img-top card-img-topA" src="images/books/{{this.img}}" alt="Card image cap">
+        <img class="card-img-top card-img-topA" src="/images/books/{{this.img}}" alt="Card image cap">
         <div class="textoCartas card-body p-2 text-center">
             <h2 class="">Titulo</h2>
             <p>{{this.titulo}}</p>
@@ -20,8 +20,10 @@
             <h2>Tematica: </h2>
             <p>{{this.tematica}}</p>
 
-            <a class="btn btn-info" href="/editar/{{this.id}}" role="button">Editar</a>
-            <a class="btn btn-danger" href="/eliminar/{{this.id}}" role="button">Eliminar</a>
+                <div class="text-center">
+                <a class="btn btn-success mt-1" href="/addfav/{{this.id}}/{{this.duenio}}" role="button">Agregar a
+                    Favoritos</a>
+            </div>
         </div>
     </div>
 

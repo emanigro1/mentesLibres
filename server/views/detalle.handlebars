@@ -1,61 +1,70 @@
-<div class="container">
+<div class="container-fluid" style="background-color: #f0f8ff;">
+    <h1 class="text-center" style="font-family: -apple-system-">Detalles del libro</h1>
+
     <div class="row">
 
-
         <div class="col-12 col-sm-6 ">
-            <h3 class="text-center">Detalle de dueño</h3>
-            <div class="container-fluid p-0" style="background-color: aliceblue;">
+            <h3 class="text-center"  style="font-family: -apple-system-">Datos del dueño</h3>
+            <div class="container-fluid p-0 card mb-3 bg-light" style="background-color: aliceblue;">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters bg-light">
+                        <div class="col-md-4">
+                            <img class="card-img-top card-img-topA bg-light" style="height: 225px;"
+                                src="/images/books/{{user.img}}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body textoCartas">
 
-
-
-
-                <div class="card border-secondary cardall m-2 p-2" style="width: 200px; height: 100%;">
-                    <div class="card-body p-2 text-center">
-                        <h3>Usuario:</h3>
-                        <p>{{user.username}}</p>
-                        <h3>E-mail: </h3>
-                        <p>{{user.email}}</p>
-                        <h3>Provincia: </h3>
-                        <p>{{user.provincia}}</p>
-                        <h3>Localidad: </h3>
-                        <p>{{user.localidad}}</p>
-
-
-
+                                <h2 class=""><u>Dueño</u>:
+                                    <span>{{user.username}}</span></h2>
+                                <h2><u>Email</u>:
+                                    <span>{{user.email}}</span></h2>
+                                <h2><u>Provincia</u>:
+                                    <span>{{user.provincia}}</span></h2>
+                                <h2><u>Localidad</u>:
+                                    <span>{{user.localidad}}</span> </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-
-            <a class="btn btn-success mt-1" href="/" role="button">Volver</a>
+           <div class="text-center">
+            <a class="btn btn-info mt-1" href="/bookspersons/{{book.duenio}}" role="button">Mas libros del usuario</a>
+</div>
         </div>
-
         <div class="col-12 col-sm-6 ">
-            <h3 class="text-center">Detalle del libro</h3>
-            <div class="container-fluid p-0" style="background-color: aliceblue;">
-
-
-                <div class="card border-secondary cardall cardas  m-2 p-2 contenedorCards">
-                    <div class="textoCartas card-body p-2 text-center">
-                        <h2 class="">Titulo</h2>
-                        <p>{{book.titulo}}</p>
-                        <h2 class="">Autor</h2>
-                        <p>{{book.autor}}</p>
-                        <h2>Editorial: </h2>
-                        <p>{{books.editorial}}</p>
-                        <h2>ISBN: </h2>
-                        <p>{{book.isbn}}</p>
-                        <h2>Tematica: </h2>
-                        <p>{{book.tematica}}</p>
-
+            <h3 class="text-center"  style="font-family: -apple-system-">Libro</h3>
+            <div class="container-fluid p-0 card mb-3 bg-light" style="background-color: aliceblue;">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters bg-light">
+                        <div class="col-md-4">
+                            <img class="card-img-top card-img-topA bg-light" style="height: 225px;"
+                                src="/images/books/{{book.img}}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body textoCartas">
+                                <h2><u>Titulo</u>:
+                                    <span class="text-center">{{book.titulo}}</span>
+                                </h2>
+                                <h2 class=""><u>Autor</u>:
+                                    <span>{{book.autor}}</span></h2>
+                                <h2><u>Editorial</u>:
+                                    <span>{{book.editorial}}</span></h2>
+                                <h2><u>ISBN</u>:
+                                    <span>{{book.isbn}}</span></h2>
+                                <h2><u>Tematica</u>:
+                                    <span>{{book.tematica}}</span> </h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
-
             </div>
-            <a class="btn btn-success mt-1" href="/addfav/{{book.id}}/{{book.duenio}}" role="button">AddFav</a>
-
+            <div class="text-center">
+                <a class="btn btn-success mt-1" href="/addfav/{{book.id}}/{{book.duenio}}" role="button">Agregar a
+                    Favoritos</a>
+            </div>
         </div>
     </div>
 

@@ -107,7 +107,7 @@ function getBooksByUser(filterUser, resultadoCallback) {
                         id: books._id.toString(),
                         titulo: books.titulo,
                         autor: books.autor,
-                        editorial: books.editorial,
+                        duenio: books.duenio,
                         editorial: books.editorial,
                         isbn: books.isbn,
                         tematica: books.tematica,
@@ -197,6 +197,8 @@ function getBooksByFavorites(usuario, bookListFav) {
                 if (err) {
                     resultadoCallback(undefined)
                 } else {
+             
+                    
 
                     booksListNew = userBook.favoritos.map(books => ({
                         id: books.id,

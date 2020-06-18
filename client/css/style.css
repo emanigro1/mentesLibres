@@ -180,9 +180,13 @@ box-shadow: 0 0 1em 0px  #2a3b38;}
 .textoCartas > h2 {
 	font-size: 20px;
 	display: block;
+	margin-bottom: 0px;
+	font-family:" -apple-system-";
 
 }
 .textoCartas > p {
 	font-size: 15px;
 	display: block;
+	margin-bottom: 8px;
+	font-family:" -apple-system-";
 }

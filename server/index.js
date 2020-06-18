@@ -228,7 +228,7 @@ app.get("/detalle/:id", (req, res) => {
     editionBooks.getBookByID(req.params.id, book => {
         editionPersons.getPersonByUser(book.duenio, user => {
 
-            res.status(200).render("detalle", { layout: "loggedIn", book, user })
+            res.status(200).render("detalle", { layout: "loggedIn", book, user,name: req.session.loggerUser })
 
 
         })
@@ -246,7 +246,7 @@ app.get("/favorites", (req, res) => {
 
     editionBooks.getBooksByFavorites(req.session.loggerUser, listBooksFav => {
 
-        res.status(200).render("favorites", { layout: "loggedIn", books:listBooksFav })
+        res.status(200).render("favorites", { layout: "loggedIn", books: listBooksFav,name: req.session.loggerUser })
 
     })
 
@@ -254,13 +254,13 @@ app.get("/favorites", (req, res) => {
 })
 
 
-app.get("/favorites/remove/:id",(req,res)=>{
+app.get("/favorites/remove/:id", (req, res) => {
 
-editionPersons.removeFavorite(req.session.loggerUser,req.params.id,()=>{
+    editionPersons.removeFavorite(req.session.loggerUser, req.params.id, () => {
 
-    res.redirect("/favorites");
+        res.redirect("/favorites");
 
-})
+    })
 
 })
 
@@ -273,7 +273,75 @@ app.get("/libros", function (req, res) {
     if (req.session.loggerUser) {
         editionBooks.getBooksAll(listaLibros => {
 
-            if (req.query.all) {
+            if (req.query.arte) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.arte
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            }
+            else if (req.query.cienciasnaturales) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.cienciasnaturales
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
+
+            }
+            else if (req.query.computacion) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.computacion
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            } else if (req.query.enciclopedias) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.enciclopedias
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            } else if (req.query.ficcion) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.ficcion
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            } else if (req.query.gastronomia) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.gastronomia
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            }
+            else if (req.query.infantil) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.infantil
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            } else if (req.query.negocio) {
+
+                let listBooks = listaLibros.filter(item => item.tematica == req.query.negocio
+                );
+
+
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+
+            }
+            else if (req.query.all) {
 
                 let listBooks = listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
                     item.titulo.toUpperCase().includes(req.query.all.toUpperCase()) || item.editorial.toUpperCase().includes(req.query.all.toUpperCase())
@@ -281,11 +349,11 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
 
             } else {
 
-                res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
+                res.status(200).render("home", { layout: "loggedIn", books: listaLibros,name: req.session.loggerUser })
             }
         })
     } else {
@@ -294,6 +362,23 @@ app.get("/libros", function (req, res) {
 });
 
 
+app.get("/mydates", (req, res) => {
+    editionPersons.getPersonByUser(req.session.loggerUser, user => {
+
+        res.status(200).render("mydates", { layout: "loggedIn", user ,name:req.session.loggerUser})
+    })
+
+}
+
+
+)
+
+app.get("/bookspersons/:duenio", (req, res) => {
+    editionBooks.getBooksByUser(req.params.duenio, books => {
+  
+        res.status(200).render("bookspersons", { layout: "loggedIn", books, duenio:req.params.duenio,name: req.session.loggerUser})
+    })
+})
 
 
 
