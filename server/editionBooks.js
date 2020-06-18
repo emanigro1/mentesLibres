@@ -5,6 +5,7 @@ module.exports = {
     uploadBooks,
     deleteBook,
     getBookByID,
+    saveMessage,
 
 }
 const mongodb = require("mongodb");
@@ -34,9 +35,7 @@ function uploadBooks(user, titulo, autor, editorial, isbn, tematica, img, succes
                 isbn,
                 tematica,
                 img
-
             }
-
             usersCollection.insertOne(newUser, (err, result) => {
                 if (err) {
                     successfulUpload(err);
@@ -60,7 +59,6 @@ function getBooksAll(resultadoCallback) {
             const mentesLibresDB = client.db("menteslibres");
             const usersCollection = mentesLibresDB.collection("books");
 
-
             usersCollection.find().toArray((err, booksList) => {
                 if (err) {
                     resultadoCallback(error)
@@ -76,7 +74,6 @@ function getBooksAll(resultadoCallback) {
                         tematica: books.tematica,
                         img: books.img
                     }));
-
 
                     resultadoCallback(booksListNew);
                 }
@@ -114,9 +111,6 @@ function getBooksByUser(filterUser, resultadoCallback) {
                         img: books.img
                     }));
 
-
-
-
                     resultadoCallback(booksListNew);
                 }
                 client.close();
@@ -148,7 +142,6 @@ function deleteBook(filterBook, resultadoCallback) {
 }
 function getBookByID(filterId, resultadoCallback) {
 
-
     mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
         if (err) {
             resultadoCallback(err);
@@ -170,7 +163,8 @@ function getBookByID(filterId, resultadoCallback) {
                         editorial: book.editorial,
                         isbn: book.isbn,
                         tematica: book.tematica,
-                        img: book.img
+                        img: book.img,
+                        comentarios: []
                     }
 
                     resultadoCallback(bookResult);
@@ -197,8 +191,6 @@ function getBooksByFavorites(usuario, bookListFav) {
                 if (err) {
                     resultadoCallback(undefined)
                 } else {
-             
-                    
 
                     booksListNew = userBook.favoritos.map(books => ({
                         id: books.id,
@@ -211,9 +203,6 @@ function getBooksByFavorites(usuario, bookListFav) {
                         img: books.img
                     }));
 
-
-
-
                     bookListFav(booksListNew);
                 }
                 client.close();
@@ -222,9 +211,25 @@ function getBooksByFavorites(usuario, bookListFav) {
     })
 }
 
+function saveMessage(user, message, idBook, resultadoCallback) {
+    getBookByID(idBook, book => {
+
+        const fakeUpdateBook = book;
+
+        fakeUpdateBook.comentarios.push({
+            usuario: user,
+            comentario: message
+        });
+        console.log(fakeUpdateBook);
+        resultadoCallback({
+            success: true,
+            bookUpdate: fakeUpdateBook,
+        })
+    })
+}
 
 
-/* 
+/*
 function removeFavorite(user, bookId, removeBookFav) {
     mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
         if (err) {
@@ -240,7 +245,7 @@ function removeFavorite(user, bookId, removeBookFav) {
                     removeBookFav(undefined)
                 } else {
                     console.log(userBook);
-                    
+
                     for (var i =0; i < userBook.favoritos.length; i++){
                         if ( userBook.favoritos[i].id == bookId) {
                             userBook.favoritos.splice(i,1);

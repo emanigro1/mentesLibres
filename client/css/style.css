@@ -4,7 +4,9 @@ body{
 	sans-serif;
 
 }
-
+.bodyContenedor{
+	min-height: 80vh;
+}
 
 ul li a span{
 	font-size: 12px;

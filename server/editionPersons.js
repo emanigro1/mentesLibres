@@ -87,8 +87,6 @@ function addFavorite(user, bookUser, resultado) {
             const mentesLibresDB = client.db("menteslibres");
             const usersCollection = mentesLibresDB.collection("users");
 
-
-
             let array = {
                 id: bookUser.id,
                 duenio: user,
@@ -98,9 +96,7 @@ function addFavorite(user, bookUser, resultado) {
                 isbn: bookUser.isbn,
                 tematica: bookUser.tematica,
                 img: bookUser.img
-
             }
-
 
             findQuery = { username: user }
             updateQuery = {
@@ -125,7 +121,6 @@ function removeFavorite(user, bookId, resultado) {
         if (err) {
             resultadoCallback(err);
             client.close();
-
         } else {
             const mentesLibresDB = client.db("menteslibres");
             const usersCollection = mentesLibresDB.collection("users");
@@ -143,8 +138,6 @@ function removeFavorite(user, bookId, resultado) {
                         resultado(undefined)
                     } else {
                         resultado(result);
-                        console.log(result);
-
                     }
                     client.close();
                 })
