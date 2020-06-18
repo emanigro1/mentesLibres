@@ -1,29 +1,30 @@
-
-<div class="container-fluid p-0" style="background-color: aliceblue;">
-        <h1 class="text-center" style="font-family: -apple-system-">Mis datos</h1>
+<div class="container-fluid p-0 bodyContenedor" style="background-color: aliceblue;">
+    <h1 class="text-center" style="font-family: -apple-system-">Mis datos</h1>
 
     <div class="d-flex align-content-around flex-wrap">
+        <div class="mx-auto" style="background-color: aliceblue;">
+            <div class="card mb-3 " style="max-width: 540px;">
 
+                
+                    <div class="card-body textoCartas">
 
+                        <h2 class=""><u>Dueño</u>:
+                            <span>{{user.username}}</span></h2>
+                        <h2><u>Email</u>:
+                            <span>{{user.email}}</span></h2>
+                        <h2><u>Provincia</u>:
+                            <span>{{user.provincia}}</span></h2>
+                        <h2><u>Localidad</u>:
+                            <span>{{user.localidad}}</span> </h2>
+                    </div>
+            
 
-        <div class="card border-secondary  bg-info text-white cardall my-2 mx-auto p-2"
-            style="width: 200px; height: 100%;">
-            <div class="card-body p-2 text-center">
-                <h3>Usuario:</h3>
-                <p>{{user.username}}</p>
-                <h3>E-mail: </h3>
-                <p>{{user.email}}</p>
-                <h3>Provincia: </h3>
-                <p>{{user.provincia}}</p>
-                <h3>Localidad: </h3>
-                <p>{{user.localidad}}</p>
             </div>
         </div>
     </div>
-</div>
-<p class="text-success text-center m-auto ">{{successfulChangePass}}</p>
-<div class="text-center">
-    <a class="btn btn-success mt-1" href="/editpass" role="button">Cambiar contraseña</a>
+    <p class="text-success text-center m-auto ">{{successfulChangePass}}</p>
+    <div class="text-center">
+        <a class="btn btn-success mt-1" href="/changepass" role="button">Cambiar contraseña</a>
 
-</div>
+    </div>
 </div>

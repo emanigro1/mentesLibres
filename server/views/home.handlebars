@@ -2,9 +2,9 @@
     <nav class="navbar navbar-light" style="background-color: aliceblue;">
         <h1 class="text-center" style="font-family: -apple-system-">Intercambia libros con la comunidad</h1>
         <form class="form-inline" action="/libros" method="GET">
-            <input id="barraBuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+            <input id="barraBuscar" class="form-control mr-sm-2" type="search" placeholder="Autor, titulo, editorial o ISBN" aria-label="Search"
                 name="all">
-            <button class="btn btn-outline-success mx-0 my-2 my-sm-0" type="submit">Buscar</button>
+            <button class="btn btn-outline-success mx-0 my-2 my-sm-0" type="submit"></button>
         </form>
     </nav>
     <div class="row">
@@ -29,9 +29,9 @@
                     <img class="card-img-top card-img-topA rounded" src="images/books/{{this.img}}"
                         alt="Card image cap">
                     <div class="textoCartas card-body p-2 text-center">
-                        <h2 class="">Titulo</h2>
+                        <h2 class=""><u>Titulo</u></h2>
                         <p>{{this.titulo}}</p>
-                        <h2 class="">Autor</h2>
+                        <h2 class=""><u>Autor</u></h2>
                         <p>{{this.autor}}</p>
 
                         <a class="btn btn-info mt-1" href="/detalle/{{id}}" role="button">Info</a>

@@ -9,7 +9,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 
-
+const fnCoincidencia = require("./coincidencias")
 const users = require("./editionPersons")
 const editionBooks = require("./editionBooks")
 const auth = require("./auth")
@@ -201,71 +201,89 @@ app.listen(port, () => {
 
 
 app.get("/addfav/:id/:duenio", (req, res) => {
+    if (req.session.loggerUser) {
 
-    editionBooks.getBookByID(req.params.id, book => {
+        editionBooks.getBookByID(req.params.id, book => {
 
-        editionPersons.addFavorite(req.session.loggerUser, book, resultado => {
+            editionPersons.addFavorite(req.session.loggerUser, book, resultado => {
 
 
-            res.redirect("/favorites")
+                res.redirect("/favorites")
+
+            })
 
         })
-
-    })
+    } else {
+        res.status(200).render("login");
+    }
 })
 
 
 app.get("/eliminar/:id", (req, res) => {
-    editionBooks.deleteBook(req.params.id, resultado => {
+    if (req.session.loggerUser) {
+        editionBooks.deleteBook(req.params.id, resultado => {
 
-        res.redirect("/mybooks")
+            res.redirect("/mybooks")
 
-    })
+        })
+    } else {
+        res.status(200).render("login");
+
+    }
 })
 
 app.get("/detalle/:id", (req, res) => {
+    if (req.session.loggerUser) {
+        editionBooks.getBookByID(req.params.id, book => {
+            editionPersons.getPersonByUser(book.duenio, user => {
 
-    editionBooks.getBookByID(req.params.id, book => {
-        editionPersons.getPersonByUser(book.duenio, user => {
+                res.status(200).render("detalle", { layout: "loggedIn", book, user, name: req.session.loggerUser })
 
-            res.status(200).render("detalle", { layout: "loggedIn", book, user,name: req.session.loggerUser })
+
+            })
+
 
 
         })
+    } else {
 
 
-
-    })
+    }
 
 
 
 })
 
 app.get("/favorites", (req, res) => {
+    if (req.session.loggerUser) {
 
+        editionBooks.getBooksByFavorites(req.session.loggerUser, listBooksFav => {
 
-    editionBooks.getBooksByFavorites(req.session.loggerUser, listBooksFav => {
+            res.status(200).render("favorites", { layout: "loggedIn", books: listBooksFav, name: req.session.loggerUser })
 
-        res.status(200).render("favorites", { layout: "loggedIn", books: listBooksFav,name: req.session.loggerUser })
+        })
+    } else {
 
-    })
+        res.status(200).render("login");
+    }
 
 
 })
 
 
 app.get("/favorites/remove/:id", (req, res) => {
+    if (req.session.loggerUser) {
 
-    editionPersons.removeFavorite(req.session.loggerUser, req.params.id, () => {
+        editionPersons.removeFavorite(req.session.loggerUser, req.params.id, () => {
 
-        res.redirect("/favorites");
+            res.redirect("/favorites");
 
-    })
+        })
+    } else {
+        res.status(200).render("login");
+    }
 
 })
-
-
-
 
 
 
@@ -279,7 +297,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             }
             else if (req.query.cienciasnaturales) {
@@ -297,7 +315,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             } else if (req.query.enciclopedias) {
 
@@ -305,7 +323,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             } else if (req.query.ficcion) {
 
@@ -313,7 +331,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             } else if (req.query.gastronomia) {
 
@@ -321,7 +339,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             }
             else if (req.query.infantil) {
@@ -330,7 +348,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             } else if (req.query.negocio) {
 
@@ -338,7 +356,7 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             }
             else if (req.query.all) {
@@ -349,11 +367,11 @@ app.get("/libros", function (req, res) {
                 );
 
 
-                res.status(200).render("home", { layout: "loggedIn", books: listBooks,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listBooks, name: req.session.loggerUser })
 
             } else {
 
-                res.status(200).render("home", { layout: "loggedIn", books: listaLibros,name: req.session.loggerUser })
+                res.status(200).render("home", { layout: "loggedIn", books: listaLibros, name: req.session.loggerUser })
             }
         })
     } else {
@@ -363,24 +381,71 @@ app.get("/libros", function (req, res) {
 
 
 app.get("/mydates", (req, res) => {
-    editionPersons.getPersonByUser(req.session.loggerUser, user => {
 
-        res.status(200).render("mydates", { layout: "loggedIn", user ,name:req.session.loggerUser})
-    })
+    if (req.session.loggerUser) {
+        editionPersons.getPersonByUser(req.session.loggerUser, user => {
 
-}
-
-
-)
-
-app.get("/bookspersons/:duenio", (req, res) => {
-    editionBooks.getBooksByUser(req.params.duenio, books => {
-  
-        res.status(200).render("bookspersons", { layout: "loggedIn", books, duenio:req.params.duenio,name: req.session.loggerUser})
-    })
+            res.status(200).render("mydates", { layout: "loggedIn", user, name: req.session.loggerUser })
+        })
+    } else {
+        res.status(200).render("login");
+    }
 })
 
+app.get("/bookspersons/:duenio", (req, res) => {
 
+
+    if (req.session.loggerUser) {
+        editionBooks.getBooksByUser(req.params.duenio, books => {
+
+            res.status(200).render("bookspersons", { layout: "loggedIn", books, duenio: req.params.duenio, name: req.session.loggerUser })
+        })
+    } else {
+
+        res.status(200).render("login");
+    }
+})
+
+/*  */
+
+app.get("/changepass", (req, res) => {
+    if (req.session.loggerUser) {
+
+        res.status(200).render("editpass", { layout: "loggedIn", name: req.session.loggerUser })
+    } else {
+
+
+        res.status(200).render("login");
+    }
+})
+
+app.post("/editpass", (req, res) => {
+
+
+
+    auth.changepass(req.session.loggerUser, req.body.password, req.body.passwordRepeat,
+        () => {
+            res.status(400).render("editpass", {
+                layout: "loggedIn",
+                repeatPasswordError: "La contraseña no coincide."
+            });
+
+        },
+        () => {
+            res.status(400).render("mydates", {
+                layout: "loggedIn",
+                successfulChangePass: "La contraseña fue cambiada exitosamente."
+            });
+
+        }
+    )
+})
+
+app.get("/coincidencias", (req, res) => {
+
+    fnCoincidencia.coincidencias(req.session.loggerUser, )
+
+})
 
 /* if (req.session.loggerUser) {
        editionBooks.getBooksAll(booksList => {

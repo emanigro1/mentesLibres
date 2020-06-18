@@ -1,6 +1,7 @@
 module.exports = {
     login,
-    register
+    register,
+    changepass
 }
 const mongodb = require("mongodb");
 const mongoURL = "mongodb+srv://dbUser:dbuser@cluster0-0s0ou.mongodb.net/menteslibres?retryWrites=true&w=majority";
@@ -58,8 +59,8 @@ function register(username, password, repeatPassword, email, provincia, localida
                     email,
                     provincia,
                     localidad,
-                    favoritos:[],
-                    coincidencias:[]
+                    favoritos: [],
+                    coincidencias: []
                 }
 
                 usersCollection.insertOne(newUser, (err, result) => {
@@ -73,4 +74,42 @@ function register(username, password, repeatPassword, email, provincia, localida
             }
         })
     })
+}
+
+function changepass(user, pass, repeatPassword,
+    repeatPasswordError, successfulRegistration) {
+
+    if (pass != repeatPassword) {
+        repeatPasswordError();
+        
+    }else{
+
+
+    mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
+        if (err) {
+            resultadoCallback(err);
+            client.close();
+
+        } else {
+            const mentesLibresDB = client.db("menteslibres");
+            const usersCollection = mentesLibresDB.collection("users");
+
+            findQuery = { username: user }
+            updateQuery = {
+                $set: {
+                    password: pass
+                }
+            }
+
+            usersCollection.updateOne(findQuery, updateQuery, (err, result) => {
+                if (err) {
+                    resultErr(err);
+                } else {
+                    successfulRegistration();
+                }
+                client.close();
+            })
+        }
+    })}
+
 }
