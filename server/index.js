@@ -9,8 +9,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 
-const fnCoincidencia = require("./coincidencias")
-const users = require("./editionPersons")
+
 const editionBooks = require("./editionBooks")
 const auth = require("./auth")
 const generateUUID = require("./idUnico");
@@ -50,8 +49,6 @@ const uploadStorage = multer.diskStorage({
 const upload = multer({ storage: uploadStorage });
 
 
-
-
 //pagina de contacto
 app.get("/contact", (req, res) => {
     if (req.session.loggerUser) {
@@ -59,7 +56,6 @@ app.get("/contact", (req, res) => {
     } else {
         res.render("contact");
     }
-
 })
 
 
@@ -72,11 +68,7 @@ app.get("/", (req, res) => {
     } else {
         res.status(200).render("login");
     }
-
-
 })
-
-
 
 //endpoint para registrarse
 app.get("/register", (req, res) => {
@@ -86,6 +78,7 @@ app.get("/register", (req, res) => {
         res.status(200).render("register");
     }
 })
+
 app.post("/register", (req, res) => {
 
     auth.register(req.body.username, req.body.password, req.body.repeatPassword,
@@ -117,6 +110,7 @@ app.get("/login", (req, res) => {
         res.status(200).render("login");
     }
 })
+
 app.post("/login", (req, res) => {
     auth.login(req.body.username, req.body.password,
         () => {
@@ -139,7 +133,6 @@ app.get("/logout", (req, res) => {
 })
 
 
-
 //endoint de subida de libros
 app.get("/upload", (req, res) => {
     if (req.session.loggerUser) {
@@ -150,6 +143,7 @@ app.get("/upload", (req, res) => {
         res.status(200).render("login");
     }
 })
+
 app.post("/upload", upload.single('imgBook'), (req, res) => {
     if (req.session.loggerUser) {
 
@@ -160,7 +154,6 @@ app.post("/upload", upload.single('imgBook'), (req, res) => {
             })
     }
 })
-
 
 
 //endpoint para editar libros personales
@@ -174,12 +167,6 @@ app.get("/mybooks", (req, res) => {
         res.status(200).render("login");
     }
 })
-
-
-
-
-
-
 
 
 app.get("/addfav/:id/:duenio", (req, res) => {
@@ -210,7 +197,10 @@ app.get("/detalle/:id", (req, res) => {
         editionBooks.getBookByID(req.params.id, book => {
             editionPersons.getPersonByUser(book.duenio, user => {
 
-                res.status(200).render("detalle", { layout: "loggedIn", book, user, name: req.session.loggerUser })
+                res.status(200).render("detalle", {
+                    layout: "loggedIn", book, user,
+                    name: req.session.loggerUser, comentarios: book.comentarios
+                })
             })
         })
     } else {
@@ -239,8 +229,6 @@ app.get("/favorites/remove/:id", (req, res) => {
         res.status(200).render("login");
     }
 })
-
-
 
 app.get("/libros", function (req, res) {
     if (req.session.loggerUser) {
@@ -370,13 +358,11 @@ app.get("/message/:id", (req, res) => {
 })
 
 app.post("/message/:idbook/:user", (req, res) => {
-    editionBooks.saveMessage(req.session.loggerUser, req.body.message, req.params.idbook, bookMessage => {
-
-        if (bookMessage.success) {
-            console.log(bookMessage.success);
-        } else {
-            console.log("no hubo resultado");
-        }
+    
+    editionBooks.saveMessage(req.session.loggerUser, req.body.message, req.params.idbook, bookComent => {
+        editionPersons.addComentario(bookComent, bookComent.id, resultado => {
+            res.redirect("/")
+        })
     })
 })
 

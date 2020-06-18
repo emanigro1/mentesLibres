@@ -182,7 +182,6 @@ function getBooksByFavorites(usuario, bookListFav) {
         if (err) {
             resultadoCallback(err);
             client.close();
-
         } else {
             const mentesLibresDB = client.db("menteslibres");
             const usersCollection = mentesLibresDB.collection("users");
@@ -220,43 +219,7 @@ function saveMessage(user, message, idBook, resultadoCallback) {
             usuario: user,
             comentario: message
         });
-        console.log(fakeUpdateBook);
-        resultadoCallback({
-            success: true,
-            bookUpdate: fakeUpdateBook,
-        })
+        resultadoCallback(fakeUpdateBook)
     })
 }
 
-
-/*
-function removeFavorite(user, bookId, removeBookFav) {
-    mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
-        if (err) {
-            removeBookFav(err);
-            client.close();
-
-        } else {
-            const mentesLibresDB = client.db("menteslibres");
-            const usersCollection = mentesLibresDB.collection("users");
-
-            usersCollection.findOne({ username: user }, (err, userBook) => {
-                if (err) {
-                    removeBookFav(undefined)
-                } else {
-                    console.log(userBook);
-
-                    for (var i =0; i < userBook.favoritos.length; i++){
-                        if ( userBook.favoritos[i].id == bookId) {
-                            userBook.favoritos.splice(i,1);
-                        }
-                     }
-                     console.log(userBook);
-                    removeBookFav(userBook);
-                }
-                client.close();
-            })
-        }
-    })
-}
- */

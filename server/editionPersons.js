@@ -3,6 +3,7 @@ module.exports = {
     getPersonByUser,
     addFavorite,
     removeFavorite,
+    addComentario,
 }
 const mongodb = require("mongodb");
 const mongoURL = "mongodb+srv://dbUser:dbuser@cluster0-0s0ou.mongodb.net/menteslibres?retryWrites=true&w=majority";
@@ -143,5 +144,36 @@ function removeFavorite(user, bookId, resultado) {
                 })
         }
     })
+}
 
+function addComentario(bookArray, bookId, resultado) {
+    mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
+        if (err) {
+            resultadoCallback(err);
+            client.close();
+
+        } else {
+            const mentesLibresDB = client.db("menteslibres");
+            const usersCollection = mentesLibresDB.collection("books");
+
+            let objeto = {
+                usuario: bookArray.comentarios[0].usuario,
+                comentario: bookArray.comentarios[0].comentario,
+            }
+
+            findQuery = { "_id": mongodb.ObjectId(bookId) }
+            updateQuery = {
+                $push: { comentarios: objeto }
+            }
+
+            usersCollection.updateOne(findQuery, updateQuery, (err, result) => {
+                if (err) {
+                    resultado(undefined)
+                } else {
+                    resultado(result);
+                }
+                client.close();
+            })
+        }
+    })
 }
