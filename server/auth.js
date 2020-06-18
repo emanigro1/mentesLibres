@@ -58,6 +58,8 @@ function register(username, password, repeatPassword, email, provincia, localida
                     email,
                     provincia,
                     localidad,
+                    favoritos:[],
+                    coincidencias:[]
                 }
 
                 usersCollection.insertOne(newUser, (err, result) => {

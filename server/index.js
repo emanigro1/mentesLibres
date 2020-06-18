@@ -181,6 +181,7 @@ app.get("/mybooks", (req, res) => {
         editionBooks.getBooksByUser(req.session.loggerUser, (books) => {
 
 
+
             res.status(200).render("mybooks", { layout: "loggedIn", books, name: req.session.loggerUser })
             return;
         })
@@ -199,10 +200,16 @@ app.listen(port, () => {
 
 
 
-app.get("/addfav/:id", (req, res) => {
-    editionBooks.getBookByID(req.params.id, books => {
+app.get("/addfav/:id/:duenio", (req, res) => {
+
+    editionBooks.getBookByID(req.params.id, book => {
+
+        editionPersons.addFavorite(req.session.loggerUser, book, resultado => {
 
 
+            res.redirect("/favorites")
+
+        })
 
     })
 })
@@ -234,7 +241,28 @@ app.get("/detalle/:id", (req, res) => {
 
 })
 
+app.get("/favorites", (req, res) => {
 
+
+    editionBooks.getBooksByFavorites(req.session.loggerUser, listBooksFav => {
+
+        res.status(200).render("favorites", { layout: "loggedIn", books:listBooksFav })
+
+    })
+
+
+})
+
+
+app.get("/favorites/remove/:id",(req,res)=>{
+
+editionPersons.removeFavorite(req.session.loggerUser,req.params.id,()=>{
+
+    res.redirect("/favorites");
+
+})
+
+})
 
 
 
@@ -243,21 +271,20 @@ app.get("/detalle/:id", (req, res) => {
 
 app.get("/libros", function (req, res) {
     if (req.session.loggerUser) {
-        console.log(req.query);
         editionBooks.getBooksAll(listaLibros => {
 
             if (req.query.all) {
 
-            let  listBooks =  listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
+                let listBooks = listaLibros.filter(item => item.autor.toUpperCase().includes(req.query.all.toUpperCase()) ||
                     item.titulo.toUpperCase().includes(req.query.all.toUpperCase()) || item.editorial.toUpperCase().includes(req.query.all.toUpperCase())
                     || item.isbn.toUpperCase().includes(req.query.all.toUpperCase()) || item.tematica.toUpperCase().includes(req.query.all.toUpperCase())
                 );
-                               
-                
+
+
                 res.status(200).render("home", { layout: "loggedIn", books: listBooks })
 
             } else {
-               
+
                 res.status(200).render("home", { layout: "loggedIn", books: listaLibros })
             }
         })
@@ -265,6 +292,9 @@ app.get("/libros", function (req, res) {
         res.status(200).render("login");
     }
 });
+
+
+
 
 
 /* if (req.session.loggerUser) {

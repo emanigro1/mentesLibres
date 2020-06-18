@@ -1,9 +1,11 @@
 module.exports = {
     getBooksAll,
     getBooksByUser,
+    getBooksByFavorites,
     uploadBooks,
     deleteBook,
     getBookByID,
+
 }
 const mongodb = require("mongodb");
 const mongoURL = "mongodb+srv://dbUser:dbuser@cluster0-0s0ou.mongodb.net/menteslibres?retryWrites=true&w=majority";
@@ -156,11 +158,8 @@ function getBookByID(filterId, resultadoCallback) {
             const mentesLibresDB = client.db("menteslibres");
             const usersCollection = mentesLibresDB.collection("books");
 
-            usersCollection.findOne({ "_id": mongodb.ObjectId(filterId), }, (err, book) => {
+            usersCollection.findOne({ "_id": mongodb.ObjectId(filterId) }, (err, book) => {
                 if (err) {
-
-
-
                     resultadoCallback(undefined)
                 } else {
                     let bookResult = {
@@ -173,7 +172,6 @@ function getBookByID(filterId, resultadoCallback) {
                         tematica: book.tematica,
                         img: book.img
                     }
-               
 
                     resultadoCallback(bookResult);
                 }
@@ -185,3 +183,73 @@ function getBookByID(filterId, resultadoCallback) {
 
 
 
+function getBooksByFavorites(usuario, bookListFav) {
+    mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
+        if (err) {
+            resultadoCallback(err);
+            client.close();
+
+        } else {
+            const mentesLibresDB = client.db("menteslibres");
+            const usersCollection = mentesLibresDB.collection("users");
+
+            usersCollection.findOne({ username: usuario }, (err, userBook) => {
+                if (err) {
+                    resultadoCallback(undefined)
+                } else {
+
+                    booksListNew = userBook.favoritos.map(books => ({
+                        id: books.id,
+                        titulo: books.titulo,
+                        autor: books.autor,
+                        editorial: books.editorial,
+                        editorial: books.editorial,
+                        isbn: books.isbn,
+                        tematica: books.tematica,
+                        img: books.img
+                    }));
+
+
+
+
+                    bookListFav(booksListNew);
+                }
+                client.close();
+            })
+        }
+    })
+}
+
+
+
+/* 
+function removeFavorite(user, bookId, removeBookFav) {
+    mongodb.MongoClient.connect(mongoURL, mongoConfig, (err, client) => {
+        if (err) {
+            removeBookFav(err);
+            client.close();
+
+        } else {
+            const mentesLibresDB = client.db("menteslibres");
+            const usersCollection = mentesLibresDB.collection("users");
+
+            usersCollection.findOne({ username: user }, (err, userBook) => {
+                if (err) {
+                    removeBookFav(undefined)
+                } else {
+                    console.log(userBook);
+                    
+                    for (var i =0; i < userBook.favoritos.length; i++){
+                        if ( userBook.favoritos[i].id == bookId) {
+                            userBook.favoritos.splice(i,1);
+                        }
+                     }
+                     console.log(userBook);
+                    removeBookFav(userBook);
+                }
+                client.close();
+            })
+        }
+    })
+}
+ */
