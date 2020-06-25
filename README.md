@@ -2,10 +2,11 @@ Mentes Libres :books:
 ======
 Conecta personas que quieran intercambiar libros
 ------
-### Descripcion :eyes:
+ Descripcion :eyes:
+ ------
 Esta app fue creada para que la comunidad pueda subir libros y tengan la oportunidad de cambiarlos con otros usuarios del sitio, creando una conexión por medio de comentarios.
 
-### Constructores :construction_worker:
+ Constructores :construction_worker:
 ------
 * HTML
 * CSS
@@ -17,7 +18,7 @@ Esta app fue creada para que la comunidad pueda subir libros y tengan la oportun
 * MongoDB Atlas
 
 
-### Instalacion :computer:
+ Instalacion :computer:
 ------
 _Teniendo instalado Node ingresar por la terminal:_
 
@@ -26,7 +27,7 @@ npm install
 npm start
 ```
 
-### Funciones  :arrow_forward:
+ Funciones  :arrow_forward:
 ------
 * Creación de cuenta
 * Búsqueda
@@ -37,7 +38,7 @@ npm start
 * Recuperacion de contraseña
 * Base de datos en la nube
 
-### Autor :mortar_board:
+Autor :mortar_board:
 ------
 Emanuel Nigro [LinkedIn](https://www.linkedin.com/in/emanuel-nigro/)
 
