@@ -37,7 +37,7 @@ ___
 * Recuperacion de contraseña
 * Base de datos en la nube
 ___
-### Autor
+### Autor :mortar_board:
 Emanuel Nigro [LinkedIn](https://www.linkedin.com/in/emanuel-nigro/)
 
 
