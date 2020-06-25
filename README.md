@@ -2,11 +2,11 @@ Mentes Libres :books:
 ======
 Conecta personas que quieran intercambiar libros
 ------
-### Descripcion
+### Descripcion :eyes:
 Esta app fue creada para que la comunidad pueda subir libros y tengan la oportunidad de cambiarlos con otros usuarios del sitio, creando una conexión por medio de comentarios.
 ___
 
-### Construido con:
+### Construido con :construction_worker:
 
 * HTML
 * CSS
@@ -19,7 +19,7 @@ ___
 
 ___
 
-### Instalacion
+### Instalacion :computer:
 _Teniendo instalado Node ingresar por la terminal:_
 
 ``` 
@@ -27,7 +27,7 @@ npm install
 npm start
 ```
 ___
-### Funciones
+### Funciones  :arrow_forward:
 * Creación de cuenta
 * Búsqueda
 * Categorias
