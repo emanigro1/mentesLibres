@@ -1,4 +1,4 @@
-Mentes Libres
+Mentes Libres :books:
 ======
 Conecta personas que quieran intercambiar libros
 ------
