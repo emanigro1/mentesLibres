@@ -6,7 +6,7 @@ Conecta personas que quieran intercambiar libros
 Esta app fue creada para que la comunidad pueda subir libros y tengan la oportunidad de cambiarlos con otros usuarios del sitio, creando una conexión por medio de comentarios.
 ___
 
-### Construido con :construction_worker:
+### Constructores :construction_worker:
 
 * HTML
 * CSS
